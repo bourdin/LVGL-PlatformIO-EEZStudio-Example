@@ -124,12 +124,13 @@
   },
   "actions": [
     {
-      "objID": "4ee7d1c5-0cbd-4a5a-a030-f70d282b9071",
+      "objID": "9f4daad5-8b2d-4413-df54-a7bc18386930",
       "components": [],
       "connectionLines": [],
       "localVariables": [],
       "userProperties": [],
-      "name": "scale0_cb"
+      "name": "arc0_cb",
+      "description": "Updates label0 from arc0"
     }
   ],
   "userPages": [
@@ -197,7 +198,15 @@
                     "childStyles": []
                   },
                   "timeline": [],
-                  "eventHandlers": [],
+                  "eventHandlers": [
+                    {
+                      "objID": "e63814ca-d1f0-40e4-c3c3-ee9b4e318a51",
+                      "eventName": "RELEASED",
+                      "handlerType": "action",
+                      "action": "arc0_cb",
+                      "userData": 0
+                    }
+                  ],
                   "identifier": "arc0",
                   "leftUnit": "px",
                   "topUnit": "px",
@@ -304,15 +313,7 @@
                     "childStyles": []
                   },
                   "timeline": [],
-                  "eventHandlers": [
-                    {
-                      "objID": "a389ef84-9658-4785-a64b-8469ef47788f",
-                      "eventName": "RELEASED",
-                      "handlerType": "action",
-                      "action": "scale0_cb",
-                      "userData": 0
-                    }
-                  ],
+                  "eventHandlers": [],
                   "identifier": "scale0",
                   "leftUnit": "px",
                   "topUnit": "px",

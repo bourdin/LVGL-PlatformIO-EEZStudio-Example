@@ -24,7 +24,7 @@ void set_var_rpm_str(const char *value) {
     rpm_str[sizeof(rpm_str) / sizeof(char) - 1] = 0;
 }
 
-void action_scale0_cb(lv_event_t *e) {
+void action_arc0_cb(lv_event_t *e) {
     char my_rpm_str[100];
     sprintf(my_rpm_str,"%d RPM",get_var_rpm());
     set_var_rpm_str(my_rpm_str);  
