@@ -17,6 +17,9 @@
 #ifndef LV_CONF_H
 #define LV_CONF_H
 
+#define HOR_RES 320
+#define VER_RES 240
+
 /*====================
    COLOR SETTINGS
  *====================*/

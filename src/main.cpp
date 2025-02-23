@@ -4,9 +4,10 @@
 #define LV_CONF_INCLUDE_SIMPLE
 #include <lvgl.h>
 #include <esp_timer.h>
-
-constexpr int32_t HOR_RES=320;
-constexpr int32_t VER_RES=240;
+#include <ui/ui.h>
+#include <ui/vars.h>
+#include <ui/screens.h>
+// #include <rpm.h>
 
 lv_display_t *display;
 lv_indev_t *indev;
@@ -38,51 +39,6 @@ void my_touchpad_read(lv_indev_t * drv, lv_indev_data_t * data) {
   }
 }
 
-// LVGL code - Handle multiple events demo
-
-static void event_cb(lv_event_t *e)
-{
-  lv_event_code_t code = lv_event_get_code(e);
-  lv_obj_t *label = reinterpret_cast<lv_obj_t *>(lv_event_get_user_data(e));
-
-  switch (code)
-  {
-  case LV_EVENT_PRESSED:
-    lv_label_set_text(label, "The last button event:\nLV_EVENT_PRESSED");
-    break;
-  case LV_EVENT_CLICKED:
-    lv_label_set_text(label, "The last button event:\nLV_EVENT_CLICKED");
-    break;
-  case LV_EVENT_LONG_PRESSED:
-    lv_label_set_text(label, "The last button event:\nLV_EVENT_LONG_PRESSED");
-    break;
-  case LV_EVENT_LONG_PRESSED_REPEAT:
-    lv_label_set_text(label, "The last button event:\nLV_EVENT_LONG_PRESSED_REPEAT");
-    break;
-  default:
-    break;
-  }
-}
-
-/**
- * Handle multiple events
- */
-void lv_example_event_2(void)
-{
-  lv_obj_t *btn = lv_button_create(lv_screen_active());
-  lv_obj_set_size(btn, 100, 50);
-  lv_obj_center(btn);
-
-  lv_obj_t *btn_label = lv_label_create(btn);
-  lv_label_set_text(btn_label, "Click me!");
-  lv_obj_center(btn_label);
-
-  lv_obj_t *info_label = lv_label_create(lv_screen_active());
-  lv_label_set_text(info_label, "The last button event:\nNone");
-
-  lv_obj_add_event_cb(btn, event_cb, LV_EVENT_ALL, info_label);
-}
-
 // continue setup code
 void setup() {
   M5.begin();
@@ -98,13 +54,13 @@ void setup() {
 
   indev = lv_indev_create();
   lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
-
   lv_indev_set_read_cb(indev, my_touchpad_read);
 
-  lv_example_event_2();
+  ui_init();
 }
 
 void loop() {
   lv_task_handler();
-  vTaskDelay(1);
+  ui_tick();
+  vTaskDelay(10);
 }
